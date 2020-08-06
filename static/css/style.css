@@ -1,0 +1,445 @@
+:root{
+    --primary-color:rgba(255, 102, 0, 0.9);
+    --secondary-color:rgba(248, 64, 32, 0.75);
+    --overlay-color:rgba(199, 34, 34, 0.95);
+    --menu-speed:0.75s;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 19px;
+    min-height: 100%;
+    background: black;
+}
+
+.main{
+    width: 100vw;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    position: sticky;
+    top: 0px;
+    background: var(--primary-color);
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+}
+
+.page-title a{
+    color: white;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.logo img{
+    align-items: center;
+    display: flex;
+    width: 50px;
+    cursor: pointer;
+}
+
+.logo {
+    padding: 5px;
+    background: var(--overlay-color);
+    border: solid;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    border: 0;
+    font-size: 100%;
+    padding: 1px;
+    font-family: inherit;
+    cursor: pointer;
+    background: red;
+    outline: none;
+    color: white;
+    font-weight: 700;
+    border-radius: 20%;
+}
+
+.john-logo-large {
+    width: 200px;
+}
+
+.home-main {
+    display: flex;
+}
+
+.nav-button {
+    background-position: right !important;
+    background-repeat: no-repeat !important;
+    box-shadow: none;
+}
+
+nav {
+    min-height: 9vh;
+    margin: auto;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-cart {
+    flex:2;
+    display: flex;
+    z-index: 3;
+    justify-content: flex-end;
+}
+
+nav h1,
+nav ul {
+    font-size: 1.5rem;
+    align-items: center;
+}
+
+
+.nav-links {
+    display: none;
+    opacity: 0;
+}
+
+.nav-links.show {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    left: 0;
+    display: flex;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    flex-direction: column;
+    padding-bottom: 15vh;
+    padding-top: 15vh;
+    overflow: hidden;
+    background: var(--overlay-color);
+}
+
+.nav-links.show li {
+    width: 90%;
+    margin: 2rem;
+    flex-direction: row;
+}
+
+.nav-links.show a {
+    font-size: 2rem;
+    background-size: 50px !important;
+    padding: 2rem;
+    padding-right: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.full-menu {
+    background: var(--secondary-color);
+    padding: .5rem;
+}
+
+nav ul {
+    flex: 1;
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+nav a{
+    color: black;
+    text-decoration: none;
+}
+
+p {
+    background: black;
+    color: white;;
+}
+
+.main{
+    flex:2;
+    height: 100%;
+    font-size: 1.4rem;
+}
+
+.main ul li{
+    display: flex;
+    height: 100%;
+}
+
+
+.item {
+    justify-content: center;
+    flex: 3;
+    margin: auto;
+    display: flex;
+}
+
+.price{
+    padding-left: 1rem;
+    align-self: center;
+}
+
+.heading{
+    padding-right: 40px;
+    font-weight: 700;
+    border-bottom: solid;
+}
+
+.name {
+    text-align: left;
+    flex:3;
+    display: flex;
+    margin: auto;
+}
+
+.name a{
+    text-decoration: none;
+    color: white;
+}
+
+.cart-items a{
+    padding-left: 1rem;
+}
+
+.main h1{
+    padding: 1rem;
+    color: white;
+    text-align: center;
+}
+
+.container{
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container form{
+    padding: 10px;
+    text-align: center;
+    height: 100%;
+}
+
+
+section {
+    border-bottom: solid;
+    color: white;
+    min-height: 35vh;
+    background: black;
+}
+
+.image {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.image-bg {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.cart {
+    background: black;
+    border-bottom: solid;
+    text-align: center;
+}
+
+.cart-items {
+    flex-grow: 2;
+}
+
+.add-subtract-buttons form, .remove form {
+    align-items: center;
+    display: flex;
+}
+
+.add-subtract-buttons form button{
+    padding: 2px;
+}
+
+.cart-button img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.nav-cart img {
+    width: 33px;
+    margin-left: 10px;
+}
+
+.product-image img{
+    width: 250px;
+}
+
+.cart-button {
+    background: transparent; 
+    border: none;
+    outline: none;
+}
+
+.add form{
+    display: flex;
+    height: 40px;
+}
+
+.add {
+    margin: auto;
+}
+
+.submit-cart form{
+    display: flex;
+    justify-content: flex-end;
+}
+.submit-cart button{
+    background: rgb(50, 99, 2);
+}
+
+.main section h1, .cart-items li{
+    border-bottom: solid;
+    background: black;
+}
+
+.submit-cart {
+    height: 100%;
+}
+
+.cart-bottom {
+    display: flex;
+    vertical-align: middle;
+}
+
+.cart-total {
+    margin: auto;
+}
+
+.nav .hamburger{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: .6rem;
+    z-index: 3;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+.nav .hamburger > div{
+    position: relative;
+    margin: auto;
+    border-radius: 30%;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+}
+
+.inputs {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    place-items: center;
+    text-align: center;
+}
+
+.login form input {
+    display: flex;
+    padding: 10px;
+    margin: 1rem;
+}
+
+.login form {
+    background: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.login form button{
+    padding: 5px;
+}
+
+.create-user a{
+    text-decoration: none;
+    color: black;
+    padding: 1.5rem;
+    background: grey;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.product-bottom div{
+    padding: 1rem;
+}
+
+@media screen and (min-width: 52em) {
+    .nav-links {
+        display: flex;
+        opacity: 1;
+        min-height: 30px;
+        margin-left: 3rem;
+    }
+
+    .nav-cart {
+        display: none;
+        pointer-events: none;
+    }
+
+    section {
+        border-left: solid;
+        border-right: solid;
+        border-bottom: solid;
+    }
+
+    .main {
+        width:100%;
+        max-width: 1050px;
+        margin: 0 auto;
+    }
+
+    .nav .hamburger {
+        display: none;
+    }
+
+    ul li a {
+        min-height: 60px;
+        padding-right: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul {
+        justify-content: space-around;
+        flex: 1;
+    }
+
+    .item {
+        justify-content: flex-start;
+        padding-left: 2rem;
+    }
+    
+    .product-image img {
+        width: 500px;
+    }
+}

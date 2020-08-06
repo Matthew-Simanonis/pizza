@@ -1,0 +1,38 @@
+{% extends "orders/base.html" %}
+{% block title %}
+    Product
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class='product'>
+            <div class='product-bottom'>
+                <div class='product-name'>
+                    <h2> {{ object.item_name }} </h2>
+                </div>
+                <div class='product-image'>
+                    <img src='/static/img/sample-food.jpg'>
+                </div>
+                <div class='product-price'>
+                    <h4>Price</h4>
+                    ${{ object.price }}
+                </div>
+                <div class='product-category'>
+                    <h4>Category</h4>
+                    {{ object.category_id.name }}
+                </div>
+                <div class=add>
+                    <form action="{{ object.get_add_to_cart_url}} " method='POST'>
+                        {% csrf_token %}
+                        <select id=count name='count'>
+                            {% for count in '123456789'|make_list %}
+                                <option value='{{ count }}'>{{ count }}</option>
+                            {% endfor %}
+                        </select>
+                        <button name='add-to-cart' value='add-to-cart' class=cart-button><img src='/static/img/plus-icon.png'></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

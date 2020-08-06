@@ -1,0 +1,18 @@
+{% extends "orders/login.html" %}
+{% block title %}
+    Create New User
+{% endblock %}
+
+{% block body %}
+    <h1>Create New User</h1>
+    <form action="{% url 'create_user' %}" method='POST'>
+        {% csrf_token %}
+        <input name='username' type='text' placeholder="Enter Username" required/>
+        <input name='password' type='password' placeholder="Enter Password" required/>
+        <input name='email' type='email' placeholder="Enter Email Address" required/>
+        <button name='submit' value='Login'>Create User</button>
+    </form>
+    <div class='create-user'>
+        <a href="login" method=GET>Already Have an Account?</a>
+    </div>
+{% endblock %}

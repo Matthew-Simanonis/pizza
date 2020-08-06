@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html Lang='en'>
+    <head>
+        <meta charset='UTF-8'/>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+        <meta http-equiv="X-UA-Compatable" content="ie=edge"/>
+        <link rel='stylesheet' type='text/css' href="{% static 'css/style.css' %}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/hamburger.js' %}"></script>
+        <title>{% block title %}Home{% endblock %}</title>
+    </head>
+<body>
+    <header>
+        <nav class=nav>
+            <div class=logo>
+                <img class=john-logo src='/static/img/papa-john-jr.png'>
+                <h1 class=page-title><a href='{% url "home" %}' st>Papa John's Jr's</a></h1>
+            </div>
+            <div class='nav-cart' id='nav-cart'>
+                <form action="{% url 'view-cart' %}" method="POST">
+                    {% csrf_token %}
+                    <button class=cart-button name="view-cart"><img src='/static/img/cart-logo.png'></button>
+                </form>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul class="nav-links" id='nav-links'>
+                    <li><a class=nav-button href='{% url "home" %}' style='background: url("/static/img/home-logo.png"); background-size: 30px;'>Home</a></li>
+                    <li><a class=nav-button href='{% url "menu" %}' style='background: url("/static/img/menu-logo.png"); background-size: 35px;' >Menu</a></li>
+                    <li><a class=nav-button href='{% url "view-cart" %}' style='background: url("/static/img/cart-logo.png"); background-size: 30px;'>View Cart</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a class=nav-button href='{% url "home" %}' style='background: url("/static/img/user-icon.png"); background-size: 30px;'> My Account</a></li>
+                {% else %}
+                    <li><a class=nav-button href='{% url "login" %}' style='background: url("/static/img/user-icon.png"); background-size: 30px;'>Login</a></li></li>
+                {% endif %}
+            </nav>
+
+    </header>  
+    <div class='container'>
+        <div class=main>
+            <div class="image">
+                <div class=image-bg style='background-image: url("/static/img/pizza-background.jpg")'></div>
+            </div>
+            {% block main %}
+            {% endblock %}
+        </div>
+        {% if message %}
+            <script>
+                function myFunction({message}){
+                    alert('asdfsdfa');
+                }
+            </script>
+        {% endif %}
+        <form class=logout action="{% url 'logout' %}" method='POST'>
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+                <p>Currently logged in as: {{ user.username }}</p>
+                <button class=button name='logout' value='Logout'>Logout</button>
+            {% else %}
+                <p>You are not Logged in</p>
+                <button class=button name='logout' value='Logout'>Login</button>
+            {% endif %}
+        </form>
+    </div>
+</body>

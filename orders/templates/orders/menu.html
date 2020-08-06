@@ -1,0 +1,50 @@
+{% extends "orders/base.html" %}
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block main %}
+<section style='background:transparent;'>
+    <h1>Menu</h1>
+    <ul class=full-menu>
+        <div class="heading">
+            <li><div class="item">
+                    <span class="name">Item</span>
+                    <span class="price">Small</span>
+                    <span class="price">Large</span>
+                </div>
+                <div class=add></div>
+            </li> 
+        </div>
+        {% for item in menu %}
+        <li>
+            <div class=item>
+                <span class=name>
+                    <a href="{{ item.get_absolute_url }}">{{ item.item_name }}</a>
+                </span>
+                <span class=price>
+                    {{ item.price }}
+                </span>
+                <span class=price>
+                    {% if item.large_price %}
+                        {{ item.large_price}}
+                    {% endif %}
+                </span>
+            </div class=item>
+
+            <div class=add>
+                <form action="{{ item.get_add_to_cart_url}} " method='POST'>
+                    {% csrf_token %}
+                    <select id=count name='count'>
+                        {% for count in '123456789'|make_list %}
+                            <option value='{{ count }}'>{{ count }}</option>
+                        {% endfor %}
+                    </select>
+                    <button name='add-to-cart' value='add-to-cart' class=cart-button><img src='/static/img/plus-icon.png'></button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

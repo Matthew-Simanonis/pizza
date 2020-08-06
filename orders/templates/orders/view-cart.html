@@ -1,0 +1,73 @@
+{% extends "orders/base.html" %}
+{% block title %}
+    View Cart
+{% endblock %}
+{% block main %}
+    <section>
+        <h1> Your Cart </h1>
+        <div class='cart'>
+            {% if cart is not None %}
+                <div class='cart-items' id='cart-items'>
+                    <ul>
+                    {% for item in cart.items.all %}
+                        <li>
+                            <div class='name'>
+                                <a href="{{ item.item.get_absolute_url}}">{{ item.item.item_name }}</a>
+                            </div>
+                            <div class='price' id='price'>
+                                {{ item.item.price}}
+                            </div>
+                            <div class='add-subtract-buttons'>
+                                <form action="{{ item.item.change_quantity_url }}" method='POST' class="add-subtract" id='quantity'>
+                                    {% csrf_token %}
+                                    <button class=cart-button name="change" class='button' value='-1' id='subtract'><img src='/static/img/minus-icon.png'></button>
+                                    {{ item.quantity}}
+                                    <button class=cart-button name="change" value='1'><img src='/static/img/plus-icon.png'></button>
+                                </form>
+                            </div>
+                            <div class='remove'>
+                                <form action="{{ item.item.get_remove_from_cart_url}} " method='POST'>
+                                    {% csrf_token %}
+                                    <button name='remove-from-cart' class=cart-button value='remove-from-cart'><img src='/static/img/trash-icon.png'></button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class=cart-bottom>
+                    <div class='cart-total' id='cart-total'></div>
+                    <div class='submit-cart'>
+                        <form action="{% url 'view-cart' %}">
+                            <button class='button' name='submit'>Order</button> 
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <h1 style="border-bottom: none;">Cart is empty</h1>
+            {% endif %}
+        </div>
+        <div class="back-to-menu">
+            <form action="{% url 'menu' %}">
+                <button class='button' name='back-to-menu'>Back to Menu</button> 
+            </form>
+        </div>
+    </section>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var cartTotal = 0;
+        $("#cart-items").find('li').each((index, element) =>{
+            var price = parseFloat(element.querySelector('#price').innerHTML, 10);
+            var quantity = parseInt(element.querySelector('#quantity').innerText, 10);
+            var total = price * quantity;
+            cartTotal += total
+            if (quantity <= 1){
+                element.querySelector('#subtract').style.pointerEvents = 'none';
+                element.querySelector('#subtract').style.filter = 'grayscale(100%)';
+            }
+            element.querySelector('#price').innerHTML = "$" + total.toFixed(2);
+        })
+        document.querySelector('#cart-total').innerHTML = "Total: $" + cartTotal.toFixed(2);
+    })
+</script> 
+{% endblock %}

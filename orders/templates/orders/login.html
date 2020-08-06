@@ -1,0 +1,29 @@
+{% extends "orders/base.html" %}
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <section style='background: transparent;'>
+        <div class="inputs">
+            {% block body %}
+                <div class="login">
+                    <h1>Login</h1> 
+                    <form action="{% url 'login' %}" method='POST'>
+                        {% csrf_token %}
+                        <input name='username' type='text' placeholder="Enter Username" required/>
+                        <input name='password' type='password' placeholder="Enter Password" required/>
+                        <button name='submit' value='Login'>Login</button>
+                    </form>
+                </div>
+                <div class='create-user'>
+                    <a href="create_user" method=GET>Create New User</a>
+                </div>
+            {% endblock %}
+        </div>
+        <form action="{% url 'guest-login' %}" method="POST">
+            {% csrf_token %}
+            <button value='guest-login' name='guest-login'>Login as Guest</button>
+        </form>
+    </section>
+{% endblock %}
